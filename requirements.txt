@@ -30,10 +30,6 @@ langchain-pinecone
 # --- Pinecone Vector DB ---
 pinecone
 
-# --- Embeddings & Tokenization ---
-tiktoken
-sentence-transformers
-
 # --- Validation & Settings ---
 pydantic
 pydantic-settings
