@@ -1,4 +1,5 @@
 import io
+import re
 import base64
 import json
 import random
@@ -179,7 +180,11 @@ async def create_visuals(data: VisualRequest, authorization: Optional[str] = Hea
             content = content.split("```json")[1].split("```")[0].strip()
         elif "```" in content:
              content = content.split("```")[1].split("```")[0].strip()
-             
+
+        # Fix invalid JSON escape sequences (e.g. \s, \d, \p) that the LLM may produce
+        # Only escape backslashes NOT followed by valid JSON escape chars: " \ / b f n r t u
+        content = re.sub(r'\\(?!["\\/bfnrtu])', r'\\\\', content)
+
         parsed_json = json.loads(content)
         
         task = parsed_json.get("task", "Visualization")
