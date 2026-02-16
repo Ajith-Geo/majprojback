@@ -19,6 +19,7 @@ playwright
 beautifulsoup4
 
 # --- PDF Document Processing ---
+langchain
 langchain-core
 langchain_community
 pypdf
